@@ -30,6 +30,7 @@ public class Patient implements ListViewObjectAdapter.IListViewItem,Serializable
     String Lab;
     private ArrayList<ExtraField> extraFields;
 
+
     public Patient(int id, String name, String dateOfBirth, String nationalCode, String phoneNumber, String address, String profilePicturePath, String riskFactor, String drugs, String pastMedicalHistory, String paraClinicAndProcedure, String lab) {
         this.id = id;
         this.name = name;

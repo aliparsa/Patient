@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.parsa.patient.Adapter.ListViewObjectAdapter;
 import com.parsa.patient.R;
 
 import java.util.ArrayList;
@@ -12,13 +13,36 @@ import java.util.ArrayList;
 /**
  * Created by parsa on 2015-01-04.
  */
-public class Visit {
+public class Visit implements ListViewObjectAdapter.IListViewItem {
     int id;
     int patientId;
     String progressNote;
     String plan;
+    String creationDate;
 
     ArrayList<ExtraField> extraFields;
+
+    public Visit(int id, int patientId, String progressNote, String plan,String creationDate, ArrayList<ExtraField> extraFields) {
+        this.id = id;
+        this.patientId = patientId;
+        this.progressNote = progressNote;
+        this.plan = plan;
+        this.creationDate = creationDate;
+        this.extraFields = extraFields;
+    }
+
+    public Visit( int patientId, String progressNote, String plan,String creationDate, ArrayList<ExtraField> extraFields) {
+        this.patientId = patientId;
+        this.progressNote = progressNote;
+        this.plan = plan;
+        this.creationDate = creationDate;
+        this.extraFields = extraFields;
+    }
+
+    public Visit() {
+
+    }
+
 
     public View getView(Context context, View oldView) {
         if (oldView == null || !(oldView.getTag() instanceof Visit)) {
@@ -46,8 +70,8 @@ public class Visit {
         if (holder.plan == null)
             holder.plan = (TextView) view.findViewById(R.id.plan);
 
-        holder.id.setText(this.getId());
-        holder.patientid.setText(this.getPatientId());
+        holder.id.setText(this.getId()+"");
+        holder.patientid.setText(this.getPatientId()+"");
         holder.progressnote.setText(this.getProgressNote());
         holder.plan.setText(this.getPlan());
     }
@@ -102,4 +126,11 @@ public class Visit {
         this.extraFields = extraFields;
     }
 
+    public String getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(String creationDate) {
+        this.creationDate = creationDate;
+    }
 }

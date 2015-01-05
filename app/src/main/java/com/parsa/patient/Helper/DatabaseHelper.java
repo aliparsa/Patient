@@ -483,4 +483,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void emptyPatientTable() {
         this.getWritableDatabase().execSQL("delete from "+TABLE_PATIENT);
     }
+
+    public void emptyVisitTable() {
+        this.getWritableDatabase().execSQL("delete from "+TABLE_VISIT);
+
+    }
 }
