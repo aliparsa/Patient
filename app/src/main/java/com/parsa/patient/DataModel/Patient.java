@@ -5,12 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.parsa.patient.Adapter.ListViewObjectAdapter;
 import com.parsa.patient.R;
+
+import java.io.Serializable;
 
 /**
  * Created by parsa on 2015-01-04.
  */
-public class Patient {
+public class Patient implements ListViewObjectAdapter.IListViewItem,Serializable{
     int id;
     String name;
     String dateOfBirth;
@@ -25,8 +28,38 @@ public class Patient {
     String paraClinicAndProcedure;
     String Lab;
 
+    public Patient(int id, String name, String dateOfBirth, String nationalCode, String phoneNumber, String address, String profilePicturePath, String riskFactor, String drugs, String pastMedicalHistory, String paraClinicAndProcedure, String lab) {
+        this.id = id;
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.nationalCode = nationalCode;
+        PhoneNumber = phoneNumber;
+        Address = address;
+        this.profilePicturePath = profilePicturePath;
+        this.riskFactor = riskFactor;
+        this.drugs = drugs;
+        this.pastMedicalHistory = pastMedicalHistory;
+        this.paraClinicAndProcedure = paraClinicAndProcedure;
+        Lab = lab;
+    }
 
+    public Patient(String name, String dateOfBirth, String nationalCode, String phoneNumber, String address, String profilePicturePath, String riskFactor, String drugs, String pastMedicalHistory, String paraClinicAndProcedure, String lab) {
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.nationalCode = nationalCode;
+        PhoneNumber = phoneNumber;
+        Address = address;
+        this.profilePicturePath = profilePicturePath;
+        this.riskFactor = riskFactor;
+        this.drugs = drugs;
+        this.pastMedicalHistory = pastMedicalHistory;
+        this.paraClinicAndProcedure = paraClinicAndProcedure;
+        Lab = lab;
+    }
 
+    public Patient() {
+
+    }
 
     public View getView(Context context, View oldView) {
         if (oldView == null || !(oldView.getTag() instanceof Patient)) {
@@ -106,7 +139,15 @@ public class Patient {
         TextView paraclinicandprocedure;
         TextView lab;
 
-        Patient patient;
+        protected Patient patient;
+
+        public Patient getPatient() {
+            return patient;
+        }
+
+        public void setPatient(Patient patient) {
+            this.patient = patient;
+        }
     }
 
 

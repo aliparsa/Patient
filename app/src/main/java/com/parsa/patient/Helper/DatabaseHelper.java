@@ -382,4 +382,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(TABLE_EXTRAFIELD, EXTRAFIELD_ID + " = " + extrafield.getId(), null);
     }
+
+    public void emptyPatientTable() {
+        this.getWritableDatabase().execSQL("delete from "+TABLE_PATIENT);
+    }
 }
