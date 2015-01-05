@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import com.parsa.patient.R;
 
+import java.util.ArrayList;
+
 /**
  * Created by parsa on 2015-01-04.
  */
@@ -15,6 +17,8 @@ public class Visit {
     int patientId;
     String progressNote;
     String plan;
+
+    ArrayList<ExtraField> extraFields;
 
     public View getView(Context context, View oldView) {
         if (oldView == null || !(oldView.getTag() instanceof Visit)) {
@@ -89,4 +93,13 @@ public class Visit {
     public void setPlan(String plan) {
         this.plan = plan;
     }
+
+    public ArrayList<ExtraField> getExtraFields() {
+        return extraFields;
+    }
+
+    public void setExtraFields(ArrayList<ExtraField> extraFields) {
+        this.extraFields = extraFields;
+    }
+
 }

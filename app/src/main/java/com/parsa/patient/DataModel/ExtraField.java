@@ -4,6 +4,11 @@ package com.parsa.patient.DataModel;
  * Created by parsa on 2015-01-04.
  */
 public class ExtraField {
+
+    public static int PATIENT_TYPE = 0;
+    public static int VISIT_TYPE = 1;
+
+
     int id;
     int type;    // 0 for patient      1 for visit
     int parentId;

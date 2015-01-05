@@ -175,6 +175,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     patient.setParaClinicAndProcedure(paraclinicandprocedure);
                     patient.setLab(lab);
 
+                    patient.setExtraFields(getAllExtraFieldsOfPatient(patient));
+
                     patients.add(patient);
                 } while (cursor.moveToNext());
             }
@@ -245,6 +247,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     visit.setPatientId(patientid);
                     visit.setProgressNote(progressnote);
                     visit.setPlan(plan);
+
+                    visits.add(visit);
+                } while (cursor.moveToNext());
+            }
+        }
+
+        return visits;
+    }
+
+
+    public ArrayList<Visit> getAllVisitsOfPatient(Patient patient) {
+        SQLiteDatabase db = getReadableDatabase();
+        final Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_VISIT  +
+                " WHERE " + VISIT_PATIENTID + " = " + patient.getId(), null);
+        ArrayList<Visit> visits = new ArrayList<Visit>();
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                do {
+                    int id = cursor.getInt(cursor.getColumnIndex(VISIT_ID));
+                    int patientid = cursor.getInt(cursor.getColumnIndex(VISIT_PATIENTID));
+                    String progressnote = cursor.getString(cursor.getColumnIndex(VISIT_PROGRESSNOTE));
+                    String plan = cursor.getString(cursor.getColumnIndex(VISIT_PLAN));
+
+                    Visit visit = new Visit();
+                    visit.setId(id);
+                    visit.setPatientId(patientid);
+                    visit.setProgressNote(progressnote);
+                    visit.setPlan(plan);
+
+                    visit.setExtraFields(getAllExtraFieldsOfVisit(visit));
 
                     visits.add(visit);
                 } while (cursor.moveToNext());
@@ -330,6 +363,70 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public ArrayList<ExtraField> getAllExtraFields() {
         SQLiteDatabase db = getReadableDatabase();
         final Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_EXTRAFIELD, null);
+        ArrayList<ExtraField> extrafields = new ArrayList<ExtraField>();
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                do {
+                    int id = cursor.getInt(cursor.getColumnIndex(EXTRAFIELD_ID));
+                    int type = cursor.getInt(cursor.getColumnIndex(EXTRAFIELD_TYPE));
+                    int parentid = cursor.getInt(cursor.getColumnIndex(EXTRAFIELD_PARENTID));
+                    String title = cursor.getString(cursor.getColumnIndex(EXTRAFIELD_TITLE));
+                    String value = cursor.getString(cursor.getColumnIndex(EXTRAFIELD_VALUE));
+
+                    ExtraField extrafield = new ExtraField();
+                    extrafield.setId(id);
+                    extrafield.setType(type);
+                    extrafield.setParentId(parentid);
+                    extrafield.setTitle(title);
+                    extrafield.setValue(value);
+
+                    extrafields.add(extrafield);
+                } while (cursor.moveToNext());
+            }
+        }
+
+        return extrafields;
+    }
+
+
+    public ArrayList<ExtraField> getAllExtraFieldsOfVisit(Visit visit) {
+        SQLiteDatabase db = getReadableDatabase();
+        final Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_EXTRAFIELD
+                +" WHERE " + EXTRAFIELD_TYPE + " = " + ExtraField.VISIT_TYPE+
+                " AND " + EXTRAFIELD_PARENTID + " = " + visit.getId(), null);
+        ArrayList<ExtraField> extrafields = new ArrayList<ExtraField>();
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                do {
+                    int id = cursor.getInt(cursor.getColumnIndex(EXTRAFIELD_ID));
+                    int type = cursor.getInt(cursor.getColumnIndex(EXTRAFIELD_TYPE));
+                    int parentid = cursor.getInt(cursor.getColumnIndex(EXTRAFIELD_PARENTID));
+                    String title = cursor.getString(cursor.getColumnIndex(EXTRAFIELD_TITLE));
+                    String value = cursor.getString(cursor.getColumnIndex(EXTRAFIELD_VALUE));
+
+                    ExtraField extrafield = new ExtraField();
+                    extrafield.setId(id);
+                    extrafield.setType(type);
+                    extrafield.setParentId(parentid);
+                    extrafield.setTitle(title);
+                    extrafield.setValue(value);
+
+                    extrafields.add(extrafield);
+                } while (cursor.moveToNext());
+            }
+        }
+
+        return extrafields;
+    }
+
+
+    public ArrayList<ExtraField> getAllExtraFieldsOfPatient(Patient patient) {
+        SQLiteDatabase db = getReadableDatabase();
+        final Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_EXTRAFIELD
+                +" WHERE " + EXTRAFIELD_TYPE + " = " + ExtraField.PATIENT_TYPE+
+                " AND " + EXTRAFIELD_PARENTID + " = " + patient.getId(), null);
         ArrayList<ExtraField> extrafields = new ArrayList<ExtraField>();
 
         if (cursor != null) {

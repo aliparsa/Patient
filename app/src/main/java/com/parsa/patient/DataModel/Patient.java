@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import com.parsa.patient.R;
 
+import java.util.ArrayList;
+
 /**
  * Created by parsa on 2015-01-04.
  */
@@ -24,8 +26,7 @@ public class Patient {
     String pastMedicalHistory;
     String paraClinicAndProcedure;
     String Lab;
-
-
+    private ArrayList<ExtraField> extraFields;
 
 
     public View getView(Context context, View oldView) {
@@ -90,6 +91,14 @@ public class Patient {
         holder.pastmedicalhistory.setText(this.getPastMedicalHistory());
         holder.paraclinicandprocedure.setText(this.getParaClinicAndProcedure());
         holder.lab.setText(this.getLab());
+    }
+
+    public void setExtraFields(ArrayList<ExtraField> extraFields) {
+        this.extraFields = extraFields;
+    }
+
+    public ArrayList<ExtraField> getExtraFields() {
+        return extraFields;
     }
 
     public class Holder {
