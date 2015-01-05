@@ -1,0 +1,62 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.MedicalInfoFragment"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/riskFactor"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="riskFactor" />
+
+    <EditText
+        android:id="@+id/drugs"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="drugs"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/pastMedicalHistory"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="pastMedicalHistory"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/paraClinicAndProcedure"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="paraClinicAndProcedure"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/Lab"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Lab"
+        android:inputType="text" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        </LinearLayout>
+
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="add extra field"
+        />
+
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="save and add first visit"
+        />
+</LinearLayout>
