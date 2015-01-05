@@ -9,6 +9,7 @@ import com.parsa.patient.Adapter.ListViewObjectAdapter;
 import com.parsa.patient.R;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by parsa on 2015-01-04.
@@ -27,6 +28,7 @@ public class Patient implements ListViewObjectAdapter.IListViewItem,Serializable
     String pastMedicalHistory;
     String paraClinicAndProcedure;
     String Lab;
+    private ArrayList<ExtraField> extraFields;
 
     public Patient(int id, String name, String dateOfBirth, String nationalCode, String phoneNumber, String address, String profilePicturePath, String riskFactor, String drugs, String pastMedicalHistory, String paraClinicAndProcedure, String lab) {
         this.id = id;
@@ -123,6 +125,14 @@ public class Patient implements ListViewObjectAdapter.IListViewItem,Serializable
         holder.pastmedicalhistory.setText(this.getPastMedicalHistory());
         holder.paraclinicandprocedure.setText(this.getParaClinicAndProcedure());
         holder.lab.setText(this.getLab());
+    }
+
+    public void setExtraFields(ArrayList<ExtraField> extraFields) {
+        this.extraFields = extraFields;
+    }
+
+    public ArrayList<ExtraField> getExtraFields() {
+        return extraFields;
     }
 
     public class Holder {
