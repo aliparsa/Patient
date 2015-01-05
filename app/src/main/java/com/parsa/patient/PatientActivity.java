@@ -20,7 +20,7 @@ public class PatientActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient);
-        ArrayList<Visit> visits = new DatabaseHelper(context).getAllVisits();
+
     }
 
 
